@@ -1,0 +1,16 @@
+PODS:
+  - AdaptiveAppleSignInButton (0.1.0)
+
+DEPENDENCIES:
+  - AdaptiveAppleSignInButton (from `../`)
+
+EXTERNAL SOURCES:
+  AdaptiveAppleSignInButton:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AdaptiveAppleSignInButton: 4a2fafb73aa7c35cf4f8230ea2df1fc82169f38a
+
+PODFILE CHECKSUM: d36e1ab7c96b7fb4b1599e8b33f76ce8b95dd0af
+
+COCOAPODS: 1.9.1
