@@ -1,0 +1,6 @@
+framework module Pods_AdaptiveAppleSignInButton_Example {
+  umbrella header "Pods-AdaptiveAppleSignInButton_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
