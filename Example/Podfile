@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'AdaptiveAppleSignInButton_Example' do
+  pod 'AdaptiveAppleSignInButton', :path => '../'
+
+  target 'AdaptiveAppleSignInButton_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
