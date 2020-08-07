@@ -24,6 +24,47 @@ public class AdaptiveAppleSignInButton: UIControl {
     private let darkStyle: ASAuthorizationAppleIDButton.Style
     private let buttonType: ASAuthorizationAppleIDButton.ButtonType
 
+    private var isDarkMode: Bool {
+        return traitCollection.userInterfaceStyle == .dark
+    }
+
+    private var activeButton: ASAuthorizationAppleIDButton? {
+        get {
+            if isDarkMode {
+                return darkModeButton
+            } else {
+                return lightModeButton
+            }
+        }
+        set {
+            if isDarkMode {
+                darkModeButton = newValue
+            } else {
+                lightModeButton = newValue
+            }
+        }
+    }
+
+    private var inactiveButton: ASAuthorizationAppleIDButton? {
+        get {
+            if isDarkMode {
+                return lightModeButton
+            } else {
+                return darkModeButton
+            }
+        }
+        set {
+            if isDarkMode {
+                lightModeButton = newValue
+            } else {
+                darkModeButton = newValue
+            }
+        }
+    }
+
+    private var activeButtonStyle: ASAuthorizationAppleIDButton.Style {
+        return isDarkMode ? darkStyle : lightStyle
+    }
 
     public init(authorizationButtonType: ASAuthorizationAppleIDButton.ButtonType = .signIn, lightStyle: ASAuthorizationAppleIDButton.Style = .black, darkStyle: ASAuthorizationAppleIDButton.Style = .white) {
         buttonType = authorizationButtonType
@@ -48,40 +89,22 @@ public class AdaptiveAppleSignInButton: UIControl {
 
     public override func layoutSubviews() {
         super.layoutSubviews()
-
-        darkModeButton?.frame = bounds
-        lightModeButton?.frame = bounds
+        activeButton?.frame = bounds
     }
 
     public override var intrinsicContentSize: CGSize {
-        if traitCollection.userInterfaceStyle == .dark {
-            return darkModeButton?.intrinsicContentSize ?? .zero
-        } else {
-            return lightModeButton?.intrinsicContentSize ?? .zero
-        }
+        return activeButton?.intrinsicContentSize ?? .zero
     }
 
     private func update() {
-        switch traitCollection.userInterfaceStyle {
-        case .dark:
-            if darkModeButton == nil {
-                darkModeButton = ASAuthorizationAppleIDButton(authorizationButtonType: buttonType, authorizationButtonStyle: darkStyle)
-                darkModeButton?.constraints.forEach { $0.isActive = false }
-                addSubview(darkModeButton!)
-            }
-
-            lightModeButton?.removeFromSuperview()
-            lightModeButton = nil
-        default:
-            if lightModeButton == nil {
-                lightModeButton = ASAuthorizationAppleIDButton(authorizationButtonType: buttonType, authorizationButtonStyle: lightStyle)
-                lightModeButton?.constraints.forEach { $0.isActive = false }
-                addSubview(lightModeButton!)
-            }
-
-            darkModeButton?.removeFromSuperview()
-            darkModeButton = nil
+        if activeButton == nil {
+            activeButton = ASAuthorizationAppleIDButton(authorizationButtonType: buttonType, authorizationButtonStyle: activeButtonStyle)
+            activeButton?.constraints.forEach { $0.isActive = false }
+            addSubview(activeButton!)
         }
+
+        inactiveButton?.removeFromSuperview()
+        inactiveButton = nil
 
         layoutIfNeeded()
     }
