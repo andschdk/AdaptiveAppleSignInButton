@@ -7,12 +7,27 @@
 //
 
 import UIKit
+import AdaptiveAppleSignInButton
 
 class ViewController: UIViewController {
 
+    var button: AdaptiveAppleSignInButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        view.backgroundColor = .systemBackground
+
+        button = AdaptiveAppleSignInButton()
+        view.addSubview(button)
+
+        button.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            button.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            button.heightAnchor.constraint(equalToConstant: 50),
+            button.widthAnchor.constraint(equalToConstant: 200)
+        ])
     }
 
 }
