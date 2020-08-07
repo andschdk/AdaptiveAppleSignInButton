@@ -10,10 +10,9 @@ import AuthenticationServices
 import UIKit
 
 public class AdaptiveAppleSignInButton: UIControl {
-    var cornerRadius: CGFloat = 0.0 {
+    public var cornerRadius: CGFloat = 0.0 {
         didSet {
-            darkModeButton?.cornerRadius = cornerRadius
-            lightModeButton?.cornerRadius = cornerRadius
+            updateCornerRadius()
         }
     }
 
@@ -106,6 +105,12 @@ public class AdaptiveAppleSignInButton: UIControl {
         inactiveButton?.removeFromSuperview()
         inactiveButton = nil
 
+        updateCornerRadius()
+
         layoutIfNeeded()
+    }
+
+    private func updateCornerRadius() {
+        activeButton?.cornerRadius = cornerRadius
     }
 }
