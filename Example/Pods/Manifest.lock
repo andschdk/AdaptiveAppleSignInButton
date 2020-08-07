@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AdaptiveAppleSignInButton: 4a2fafb73aa7c35cf4f8230ea2df1fc82169f38a
+  AdaptiveAppleSignInButton: cf04f5284c98156e77cd0614c6ff233d45ba6e1e
 
 PODFILE CHECKSUM: d36e1ab7c96b7fb4b1599e8b33f76ce8b95dd0af
 
