@@ -23,6 +23,10 @@ public class AdaptiveAppleSignInButton: UIControl {
     private let darkStyle: ASAuthorizationAppleIDButton.Style
     private let buttonType: ASAuthorizationAppleIDButton.ButtonType
 
+    private var target: Any?
+    private var action: Selector?
+    private var controlEvents: UIControl.Event = .touchUpInside
+
     private var isDarkMode: Bool {
         return traitCollection.userInterfaceStyle == .dark
     }
@@ -86,6 +90,13 @@ public class AdaptiveAppleSignInButton: UIControl {
         update()
     }
 
+    public override func addTarget(_ target: Any?, action: Selector, for controlEvents: UIControl.Event) {
+        self.target = target
+        self.action = action
+        self.controlEvents = controlEvents
+        updateTarget()
+    }
+
     public override func layoutSubviews() {
         super.layoutSubviews()
         activeButton?.frame = bounds
@@ -106,11 +117,16 @@ public class AdaptiveAppleSignInButton: UIControl {
         inactiveButton = nil
 
         updateCornerRadius()
+        updateTarget()
 
         layoutIfNeeded()
     }
 
     private func updateCornerRadius() {
         activeButton?.cornerRadius = cornerRadius
+    }
+
+    private func updateTarget() {
+        action.map { self.activeButton?.addTarget(self.target, action: $0, for: self.controlEvents) }
     }
 }
