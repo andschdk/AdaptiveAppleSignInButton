@@ -28,7 +28,14 @@ class ViewController: UIViewController {
             button.heightAnchor.constraint(equalToConstant: 50),
             button.widthAnchor.constraint(equalToConstant: 200)
         ])
+
+        button.addTarget(self, action: #selector(login), for: .touchUpInside)
+
+        button.cornerRadius = 6
     }
 
+    @objc func login() {
+        print("LOGIN")
+    }
 }
 
