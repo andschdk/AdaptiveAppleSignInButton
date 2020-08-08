@@ -1,42 +1,22 @@
-#
-# Be sure to run `pod lib lint AdaptiveAppleSignInButton.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = 'AdaptiveAppleSignInButton'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of AdaptiveAppleSignInButton.'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
+  s.summary          = 'ASAuthorizationAppleIDButton` does not update its appearance when toggling between light and dark mode. This Pod solves this.'
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+  `ASAuthorizationAppleIDButton` does not update its appearance when toggling between light and dark mode. Aditionally it is not possible to update the appearance manually. You will have to create a new instance of `ASAuthorizationAppleIDButton`, initialising it with the correct style.
+  `AdaptiveAppleSignInButton` is wrapping an `ASAuthorizationAppleIDButton` with the correct style. When `userInterfaceStyle` changes a new instance will replace the previous one.
                        DESC
 
-  s.homepage         = 'https://github.com/André Schmidt/AdaptiveAppleSignInButton'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  s.homepage         = 'https://github.com/andschdk/AdaptiveAppleSignInButton'
+  s.screenshots      = 'https://github.com/andschdk/AdaptiveAppleSignInButton/blob/master/Example/dark.png?raw=true', 'https://github.com/andschdk/AdaptiveAppleSignInButton/blob/master/Example/light.png?raw=true'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'André Schmidt' => 'andre@andsch.com' }
-  s.source           = { :git => 'https://github.com/André Schmidt/AdaptiveAppleSignInButton.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => 'https://github.com/andschdk/AdaptiveAppleSignInButton.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '13.0'
+  s.platform = :ios, "9.0"
+
+  s.swift_versions = ['5.0', '5.1', '5.2']
 
   s.source_files = 'AdaptiveAppleSignInButton/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'AdaptiveAppleSignInButton' => ['AdaptiveAppleSignInButton/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
