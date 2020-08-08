@@ -9,6 +9,7 @@ import Foundation
 import AuthenticationServices
 import UIKit
 
+@available (iOS 13.0, *)
 public class AdaptiveAppleSignInButton: UIControl {
     public var cornerRadius: CGFloat = 0.0 {
         didSet {
