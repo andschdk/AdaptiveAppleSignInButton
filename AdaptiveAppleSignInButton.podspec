@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'AdaptiveAppleSignInButton'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'ASAuthorizationAppleIDButton` does not update its appearance when toggling between light and dark mode. This Pod solves this.'
 
   s.description      = <<-DESC
